@@ -1,34 +1,23 @@
 <?php
-    ini_set('memory_limit', -1);
-    $handle = fopen(__DIR__ . '/input.txt', 'r');
-
-    $lines = [];
-
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $lines[] = rtrim($line, "\r\n");
-        }
-
-        fclose($handle);
-    }
+    require_once(__DIR__ . '/../input.php');
 
     $boards = [];
     $possibleSolutions = [];
 
     $totalLines = count($lines);
 
-    for($x = 2; $x < $totalLines; $x += 6) {
-        $board = array_map(function($line) {
-            return array_values(array_map(function($number) {
+    for ($x = 2; $x < $totalLines; $x += 6) {
+        $board = array_map(function ($line) {
+            return array_values(array_map(function ($number) {
                 return (int) $number;
-            }, array_filter(explode(' ', $line), function($number) {
+            }, array_filter(explode(' ', $line), function ($number) {
                 return $number !== '';
             })));
 
 
-            return array_values(array_filter(array_map(function($number) {
+            return array_values(array_filter(array_map(function ($number) {
                 return (int) $number;
-            }, explode(' ', $line)), function($number) {
+            }, explode(' ', $line)), function ($number) {
                 return $number !== 0;
             }));
         }, array_slice($lines, $x, 5));
@@ -37,7 +26,7 @@
 
         $solutions = [];
 
-        foreach($board as $key => $line) {
+        foreach ($board as $key => $line) {
             $solutions[] = [
                 $line[0], $line[1], $line[2], $line[3], $line[4],
             ];
@@ -58,25 +47,25 @@
     $answer1 = 0;
     $answer2 = 0;
     
-    foreach($numbers as $n => $number) {
+    foreach ($numbers as $n => $number) {
         $number = (int) $number;
         
         $chosenNumbers[] = $number;
 
-        if(count($chosenNumbers) < 5) {
+        if (count($chosenNumbers) < 5) {
             continue;
         }
 
-        foreach($boards as $key => $board) {
+        foreach ($boards as $key => $board) {
             $solutions = $possibleSolutions[$key];
 
-            foreach($solutions as $solution) {
-                if(count(array_diff($solution, $chosenNumbers)) === 0) {
+            foreach ($solutions as $solution) {
+                if (count(array_diff($solution, $chosenNumbers)) === 0) {
                     // Answer 1
-                    if($answer1 === 0) {
-                        foreach($board as $solution) {
-                            foreach($solution as $s) {
-                                if(!in_array($s, $chosenNumbers)) {
+                    if ($answer1 === 0) {
+                        foreach ($board as $solution) {
+                            foreach ($solution as $s) {
+                                if (!in_array($s, $chosenNumbers)) {
                                     $answer1 += $s;
                                 }
                             }
@@ -87,14 +76,14 @@
 
                     // Answer 2
                     $foundLastSolution = $board;
-                    if(!in_array($board, $winningBoards)) {
+                    if (!in_array($board, $winningBoards)) {
                         $winningBoards[] = $board;
                     }
                     
-                    if(count($winningBoards) === count($boards)) {
-                        foreach($board as $solution) {
-                            foreach($solution as $s) {
-                                if(!in_array($s, $chosenNumbers)) {
+                    if (count($winningBoards) === count($boards)) {
+                        foreach ($board as $solution) {
+                            foreach ($solution as $s) {
+                                if (!in_array($s, $chosenNumbers)) {
                                     $answer2 += $s;
                                 }
                             }

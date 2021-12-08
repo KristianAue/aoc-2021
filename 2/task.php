@@ -1,15 +1,5 @@
 <?php
-    $handle = fopen(__DIR__ . '/input.txt', 'r');
-
-    $lines = [];
-
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $lines[] = rtrim($line, "\r\n");
-        }
-
-        fclose($handle);
-    }
+    require_once(__DIR__ . '/../input.php');
 
     $totalLines = count($lines);
 

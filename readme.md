@@ -14,11 +14,14 @@ To run the code simply run:
 php DAY/task.php
 ```
 
+This will run the input from `input.txt`. If you want to run the example from `example.txt` simply append `example` as an argument to the command:
+```
+php DAY/task.php example
+```
+
+Please note that the task is only executable from the command line.
+
 This year I have simplified it by making one file for both tasks, which will run at the same time.
-
-I have not yet added a possibility to specify the path, or what file to use, through the terminal. This is something I will probably update the scripts with going forward, to make it easier to run example/input code.
-
-All tasks are setup to run the input as default. If you want to run the examples, please change the file accordingly. I will update this readme when I've added the file as an argument to the scripts.
 
 Some scripts might need to be optimalized if I've been in a rush. If they do, I will add a todo comment to said package, and some readme information to let you know that I will be working on optimalizing the code when I have the time.
 
