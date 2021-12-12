@@ -1,8 +1,8 @@
 <?php
     require_once(__DIR__ . '/../input.php');
 
-    $input = array_values(array_map(function ($fish) {
-        return (int) $fish;
+    $input = array_values(array_map(function ($crab) {
+        return (int) $crab;
     }, explode(',', $lines[0])));
 
     // First, sort array
