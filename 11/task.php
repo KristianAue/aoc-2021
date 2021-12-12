@@ -1,8 +1,6 @@
 <?php
     require_once(__DIR__ . '/../input.php');
 
-    $flashes = 0;
-
     $energylevels = [];
     foreach ($lines as $line) {
         $energylevels[] = array_map(function ($x) {
